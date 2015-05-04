@@ -113,6 +113,7 @@ delete_cb(void *ud, zskiplistNode *node){
 		unsigned long new_size = size * 2;
 		ERL_NIF_TERM *new_array = enif_alloc(sizeof(ERL_NIF_TERM) * new_size);
 		memcpy(new_array, zset_nif->array, sizeof(ERL_NIF_TERM) * size);
+        enif_free(zset_nif->array);
 		zset_nif->array = new_array;
 		zset_nif->size = new_size;
 	}
